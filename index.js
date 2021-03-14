@@ -28,11 +28,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(
-  "/api",
-  // cors(corsOptions),
-  apiRoutes
-);
+app.use("/api", cors(corsOptions), apiRoutes);
 
 app.get("/", (request, response) => {
   response.status(200).json({
