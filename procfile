@@ -1,0 +1,2 @@
+release: npm run cs
+web: npm run dev
