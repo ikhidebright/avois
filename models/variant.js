@@ -23,20 +23,23 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      images: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false,
-      },
       price: {
         type: DataTypes.STRING,
       },
     },
     {
       freezeTableName: true,
+      timestamps: false,
     }
   );
 
   Variant.associate = (models) => {
+    Variant.hasMany(models.Image, {
+      onDelete: "CASCADE",
+      foreignKey: "variantId",
+      as: "images",
+    });
+
     Variant.belongsTo(models.Product, {
       foreignKey: "productId",
       sourceKey: "variantId",

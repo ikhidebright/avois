@@ -9,12 +9,7 @@
     "test": "jest",
     "start": "nodemon --exec babel-node index.js",
     "migrate": "npx sequelize db:migrate",
-    "cs": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
-    "heroku:mu": "heroku run sequelize db:migrate:undo:all --env development --app dms-management-app",
-    "heroku:m": "heroku run sequelize db:migrate --env development --app dms-management-app",
-    "heroku:s": "heroku run sequelize db:seed:all --env development --app dms-management-app",
-    "h:cs": "npm run heroku:mu && npm run heroku:m && npm run heroku:s",
-    "h:o": "npm run heroku:m && npm run heroku:s"
+    "cs": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate"
   },
   "author": "Ikhide Bright",
   "license": "ISC",

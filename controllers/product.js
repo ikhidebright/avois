@@ -12,8 +12,11 @@ export default class ProductController {
   static async createProduct(request, response, next) {
     try {
       const result = await productSchema.validateAsync(request.body);
-      await model.Product.create(result);
-      return response.status(200).send("Product Added!");
+      const product = await model.Product.create(result);
+      return response.status(200).json({
+        message: "Product Added!",
+        product: product,
+      });
     } catch (error) {
       next(error);
     }
@@ -94,7 +97,7 @@ export default class ProductController {
   static async editVariants(request, response, next) {
     try {
       const { id } = request.params;
-      const idResult = await editVariantSchema.validateAsync({ id: id });
+      const idResult = await idSchema.validateAsync({ id: id });
       const variant = await model.Variant.findOne({
         where: {
           variantId: idResult.id,
@@ -103,7 +106,7 @@ export default class ProductController {
       if (!variant) {
         throw createError.BadRequest(`Invalid Product`);
       }
-      const result = await editProductSchema.validateAsync(request.body);
+      const result = await editVariantSchema.validateAsync(request.body);
       if (result.productId === "") delete result.productId;
       if (result.size === "") delete result.size;
       if (result.color === "") delete result.color;
@@ -144,7 +147,18 @@ export default class ProductController {
   }
   static async getAllProducts(request, response, next) {
     try {
-      const investment = await model.Investment.findAll();
+      const investment = await model.Product.findAll({
+        include: [
+          {
+            model: model.Variant,
+            as: "product_varieties",
+            include: {
+              model: model.Image,
+              as: "images",
+            },
+          },
+        ],
+      });
       return response.status(200).send(investment);
     } catch (error) {
       next(error);

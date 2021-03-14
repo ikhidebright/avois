@@ -2,27 +2,29 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("Product", {
-      productId: {
+    return queryInterface.createTable("Image", {
+      imageId: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING,
         defaultValue: Sequelize.UUIDV4,
       },
-      product_name: {
+      variantId: {
         type: Sequelize.STRING,
         allowNull: false,
+        onDelete: "CASCADE",
+        references: {
+          model: "Variant",
+          key: "variantId",
+        },
       },
-      product_description: {
+      location: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
-      date_uploaded: Sequelize.DATE,
-      date_edited: Sequelize.DATE,
     });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("Product");
+    return queryInterface.dropTable("Image");
   },
 };

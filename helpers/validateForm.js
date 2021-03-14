@@ -5,11 +5,9 @@ const productSchema = Joi.object({
     .required()
     .trim()
     .min(2)
-    .regex(/^[a-zA-Z ]*$/)
     .empty()
     .lowercase()
     .messages({
-      "string.pattern.base": "Product Name must not contain special characters",
       "any.required": "Sorry, Product Name is required",
       "string.min": "Product Name is too short",
       "string.empty": "Sorry, Product Name cannot be an empty field",
@@ -25,11 +23,9 @@ const editProductSchema = Joi.object({
     .allow("")
     .trim()
     .min(2)
-    .regex(/^[a-zA-Z ]*$/)
     .empty()
     .lowercase()
     .messages({
-      "string.pattern.base": "Product Name must not contain special characters",
       "any.required": "Sorry, Product Name is required",
       "string.min": "Product Name is too short",
       "string.empty": "Sorry, Product Name cannot be an empty field",
@@ -63,9 +59,6 @@ const variantSchema = Joi.object({
   color: Joi.string().required().messages({
     "any.required": "Sorry, color is required",
   }),
-  images: Joi.array(Joi.string()).required().messages({
-    "any.required": "Sorry, images is required",
-  }),
 });
 
 const editVariantSchema = Joi.object({
@@ -91,9 +84,6 @@ const editVariantSchema = Joi.object({
   }),
   color: Joi.string().optional().allow("").messages({
     "any.required": "Sorry, color is required",
-  }),
-  images: Joi.array(Joi.string()).optional().allow("").messages({
-    "any.required": "Sorry, images is required",
   }),
 });
 

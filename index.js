@@ -28,7 +28,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use("/api", cors(corsOptions), apiRoutes);
+app.use(
+  "/api",
+  // cors(corsOptions),
+  apiRoutes
+);
 
 app.get("/", (request, response) => {
   response.status(200).json({
@@ -61,7 +65,7 @@ app.use((err, request, response, next) => {
 });
 app.set("x-powered-by", false);
 
-const PORT = process.env.PORT || 5053;
+const PORT = process.env.PORT || 5054;
 
 app.listen(PORT, () => {
   console.log(`Server available on port: ${PORT}`);
