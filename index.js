@@ -15,7 +15,7 @@ const app = express();
 var whitelist = [
   "http://localhost:8080",
   "http://localhost:3000",
-  "http://avios.netlify.app",
+  "https://aviosapp.netlify.app",
 ];
 var corsOptions = {
   origin: function (origin, callback) {
