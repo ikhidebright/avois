@@ -12,7 +12,7 @@ dotenv.config();
 
 const app = express();
 
-var whitelist = ["http://localhost:3000", "http://avios.netlify.app"];
+var whitelist = ["http://localhost:8080", "http://avios.netlify.app"];
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
