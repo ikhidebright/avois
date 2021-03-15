@@ -1,7 +1,7 @@
 {
-  "name": "oyel-ng-backend",
+  "name": "avios-backend",
   "version": "1.0.0",
-  "description": "Api's for oyel.ng",
+  "description": "Api's for Avios",
   "main": "index.js",
   "scripts": {
     "lint": "eslint controllers/  --fix",
